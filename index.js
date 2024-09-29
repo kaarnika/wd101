@@ -9,7 +9,6 @@ function calculateAge(dob) {
     }
     return age;
 }
-
 function displayEntries() {
     const entries = JSON.parse(localStorage.getItem('userEntries')) || [];
 
