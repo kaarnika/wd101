@@ -10,9 +10,31 @@ function calculateAge(dob) {
     return age;
 }
 
+function displayEntries() {
+    const entries = JSON.parse(localStorage.getItem('userEntries')) || [];
+
+    const tableBody = document.getElementById('userTableBody');
+    tableBody.innerHTML = '';  
+
+    entries.forEach(entry => {
+        const newRow = tableBody.insertRow();
+
+        const nameCell = newRow.insertCell(0);
+        const emailCell = newRow.insertCell(1);
+        const passwordCell = newRow.insertCell(2);
+        const dobCell = newRow.insertCell(3);
+        const termsCell = newRow.insertCell(4);
+
+        nameCell.innerText = entry.name;
+        emailCell.innerText = entry.email;
+        passwordCell.innerText = entry.password;
+        dobCell.innerText = entry.dob;
+        termsCell.innerText = entry.termsAccepted ? 'true' : 'false';
+    });
+}
 
 document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
+    event.preventDefault();  
 
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -26,20 +48,25 @@ document.getElementById('registrationForm').addEventListener('submit', function(
         return;
     }
 
-    const tableBody = document.getElementById('userTableBody');
-    const newRow = tableBody.insertRow();
+    const newEntry = {
+        name: name,
+        email: email,
+        password: password,
+        dob: dob,
+        termsAccepted: termsAccepted
+    };
 
-    const nameCell = newRow.insertCell(0);
-    const emailCell = newRow.insertCell(1);
-    const passwordCell = newRow.insertCell(2);
-    const dobCell = newRow.insertCell(3);
-    const termsCell = newRow.insertCell(4);
+    let entries = JSON.parse(localStorage.getItem('userEntries')) || [];
+    
+    entries.push(newEntry);
 
-    nameCell.innerText = name;
-    emailCell.innerText = email;
-    passwordCell.innerText = password;
-    dobCell.innerText = dob;
-    termsCell.innerText = termsAccepted ? 'true' : 'false';
+    localStorage.setItem('userEntries', JSON.stringify(entries));
+
+    displayEntries();
 
     document.getElementById('registrationForm').reset();
 });
+
+window.onload = function() {
+    displayEntries();
+};
