@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+      body {
+        background-image: url("cpic1.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      form {
+        border: 2px solid #3752c1;
+        padding: 20px;
+        border-radius: 10px;
+        width: 50%;
+        margin: auto;
+        background-color: #4ba2df;
+      }
+
+      table {
+        border: 1px solid rgb(48, 41, 145);
+        width: 100%;
+      }
+
+      table th,
+      table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      h2 {
+        background-color: #0d16812c;
+        color: white;
+        padding: 10px;
+      }
+
+      table {
+        background-color: white;
+      }
+
+      #sub {
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+      <label for="name">Name</label>
+      <input type="text" id="name" required /><br /><br />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required /><br /><br />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required /><br /><br />
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" required /><br /><br />
+
+      <label for="terms">Accept Terms and Conditions</label>
+      <input type="checkbox" id="terms" /><br /><br />
+
+      <button type="submit" id="sub">Submit</button>
+    </form>
+
+    <h2>Registered Users</h2>
+    <table style="border: 1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Dob</th>
+          <th>Accepted terms?</th>
+        </tr>
+      </thead>
+      <tbody id="userTableBody"></tbody>
+    </table>
+
+    <script src="app.js"></script>
+  </body>
+</html>
